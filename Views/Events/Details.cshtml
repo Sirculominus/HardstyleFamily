@@ -1,0 +1,58 @@
+﻿@model HardstyleFamily.Models.Events
+
+@{
+    ViewData["Title"] = "Details";
+    string mapUri = ("https://www.google.com/maps/embed/v1/place?key=AIzaSyCz8SQNxWVnApC4nUBVfQmYm-E-z0SYUl8&q=" + Model.Address).Replace(' ', '+');
+    string travelUri = ("https://www.google.com/maps/embed/v1/directions?key=AIzaSyCz8SQNxWVnApC4nUBVfQmYm-E-z0SYUl8&origin=Oslo+Airport+Norway&waypoints=" + Model.Airport + "&destination=" + Model.Address + "&mode=flying").Replace(' ','+');
+    string SearchUrl = ("https://www.google.com/search?q=" + Model.EventName + "+" + Model.Country).Replace(' ', '+');
+
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Events</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EventName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EventName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Search)
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@SearchUrl" target="_blank">@SearchUrl</a>
+        </dd>
+        <iframe width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src=@mapUri allowfullscreen>
+        </iframe>
+    <!--
+    <iframe width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src=@travelUri allowfullscreen>
+    </iframe>
+    -->
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

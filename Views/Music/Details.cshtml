@@ -1,0 +1,42 @@
+﻿@model HardstyleFamily.Models.Music
+
+@{
+    ViewData["Title"] = "Details";
+    string VideoUrl = "https://www.youtube.com/embed/" + Model.YtVideoId;
+    string SearchUrl = ("https://www.google.com/search?q=" + Model.SongName + "+" + Model.Artist).Replace(' ', '+');
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Music</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SongName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SongName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Artist)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Artist)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Search)
+        </dt>
+        <dd class="col-sm-10">
+            <a href=@SearchUrl target="_blank">
+                @SearchUrl
+            </a>
+        </dd>
+    </dl>
+    <iframe src=@VideoUrl frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="video"></iframe>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

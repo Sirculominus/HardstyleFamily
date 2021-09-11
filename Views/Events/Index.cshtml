@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Index";
     string loggedInUserEventsAttending = " ";
+    string color = "";
 }
 
 <h1>Index</h1>
@@ -40,85 +41,41 @@
             {
                 @if (loggedInUserEventsAttending != null && loggedInUserEventsAttending.Contains(item.EventId + "\":true"))
                 {
-                    <tr style="background-color:green;">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AttendingTotal)
-                            <form>
-                                <button name="eventGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Going</button>
-                                <button name="eventNotGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Not going</button>
-                                <!--<button name="eventReset" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Reset</button>-->
-                            </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Country)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-                        </td>
-                    </tr>
+                    color = "green";
                 }
+
                 else if (loggedInUserEventsAttending != null && loggedInUserEventsAttending.Contains(item.EventId + "\":false"))
                 {
-                    <tr style="background-color:red;">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AttendingTotal)
-                            <form>
-                                <button name="eventGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Going</button>
-                                <button name="eventNotGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Not going</button>
-                                <!--<button name="eventReset" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Reset</button>-->
-                            </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Country)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-                        </td>
-                    </tr>
+                    color = "red";
                 }
                 else
                 {
-                    <tr style="background-color:grey;">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AttendingTotal)
-                            <form>
-                                <button name="eventGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Going</button>
-                                <button name="eventNotGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Not going</button>
-                                <!--<button name="eventReset" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Reset</button>-->
-                            </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Country)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-                        </td>
-                    </tr>
+                    color = "grey";
                 }
+                <tr style="background-color:@color;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AttendingTotal)
+                        <form>
+                            <button name="eventGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Going</button>
+                            <button name="eventNotGoing" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Not going</button>
+                            <!--<button name="eventReset" value=@Html.DisplayFor(modelItem => item.EventId) asp-action="check1">Reset</button>-->
+                        </form>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                    </td>
+                </tr>
             }
 
         }
